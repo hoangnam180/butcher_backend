@@ -48,29 +48,177 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div className="col-md-12">
+            <div className="col-md-12" style="width: 100%; padding-left: 20px">
               <div className="product-checkout-details mt-5 mt-lg-0">
-                <h4 className="mb-4 border-bottom pb-4">Thanh toán</h4>
+                <h4 className="mb-4 border-bottom pb-4">Thông tin đơn hàng</h4>
                 <!-- map -->
-                <div key="{index}" className="media product-card">
-                  <p>{item?.ten_sp}</p>
-
-                  <div className="media-body text-right">
-                    <p className="h5">'currency', currency: 'VND', })}</p>
-                  </div>
-                </div>
-                <!-- map -->
-                <ul className="summary-prices list-unstyled mb-4">
-                  <li className="d-flex justify-content-between">
-                    <span>Tổng cộng</span>
-                    <span className="h5">
-                      'currency', currency: 'VND', }) || 0}
-                    </span>
+                <ul
+                  style="padding-left: 0"
+                  className="summary-prices list-unstyled mb-4"
+                >
+                  <li
+                    style="
+                      display: flex;
+                      gap: 60px;
+                      margin-bottom: 15px;
+                      border-bottom: 1px solid #ddd;
+                      padding-bottom: 5px;
+                    "
+                    className="d-flex justify-content-between"
+                  >
+                    <span style="min-width: 100px; text-align: justify"
+                      >- Người mua :</span
+                    >
+                    <span
+                      style="font-size: 16px; font-weight: 600"
+                      className="h5"
+                      ><%= data.nguoi_nhan %></span
+                    >
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      gap: 60px;
+                      margin-bottom: 15px;
+                      border-bottom: 1px solid #ddd;
+                      padding-bottom: 5px;
+                    "
+                    className="d-flex justify-content-between"
+                  >
+                    <span style="min-width: 100px; text-align: justify"
+                      >- Số điện thoại :</span
+                    >
+                    <span
+                      style="font-size: 16px; font-weight: 600"
+                      className="h5"
+                      ><%= data.sdt %></span
+                    >
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      gap: 60px;
+                      margin-bottom: 15px;
+                      border-bottom: 1px solid #ddd;
+                      padding-bottom: 5px;
+                    "
+                    className="d-flex justify-content-between"
+                  >
+                    <span style="min-width: 100px; text-align: justify"
+                      >- Địa chỉ :</span
+                    >
+                    <span
+                      style="font-size: 16px; font-weight: 600"
+                      className="h5"
+                      ><%= data.dia_chi %></span
+                    >
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      gap: 60px;
+                      margin-bottom: 15px;
+                      border-bottom: 1px solid #ddd;
+                      padding-bottom: 5px;
+                    "
+                    className="d-flex justify-content-between"
+                  >
+                    <span style="min-width: 100px">- Trạng thái :</span>
+                    <span
+                      style="font-size: 16px; font-weight: 600"
+                      className="h5"
+                    >
+                      <% if (data.trang_thai) { %> Đã giao hàng <% } else { %>
+                      Chưa giao hàng <% } %></span
+                    >
+                  </li>
+                  <% data.gio_hang.forEach(item => { %>
+                  <ul style="padding-left: 0; margin-top: 15px">
+                    <li
+                      style="
+                        display: flex;
+                        gap: 60px;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid #ddd;
+                        padding-bottom: 5px;
+                      "
+                      className="d-flex justify-content-between"
+                    >
+                      <span style="min-width: 100px; text-align: justify"
+                        >- Tên sản phẩm :</span
+                      >
+                      <span
+                        style="font-size: 16px; font-weight: 600"
+                        className="h5"
+                        ><%= item.ten_sp%></span
+                      >
+                    </li>
+                    <li
+                      style="
+                        display: flex;
+                        gap: 60px;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid #ddd;
+                        padding-bottom: 5px;
+                      "
+                      className="d-flex justify-content-between"
+                    >
+                      <span style="min-width: 100px; text-align: justify"
+                        >- Số lượng :</span
+                      >
+                      <span
+                        style="font-size: 16px; font-weight: 600"
+                        className="h5"
+                        ><%= item.so_luong %> (kg)</span
+                      >
+                    </li>
+                    <li
+                      style="
+                        display: flex;
+                        gap: 60px;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid #ddd;
+                        padding-bottom: 5px;
+                      "
+                      className="d-flex justify-content-between"
+                    >
+                      <span style="min-width: 100px; text-align: justify"
+                        >- Giá :</span
+                      >
+                      <span
+                        style="font-size: 16px; font-weight: 600"
+                        className="h5"
+                        ><%= item.don_gia.toLocaleString("vi-VN", { style:
+                        "currency", currency: "VND", }) %></span
+                      >
+                    </li>
+                  </ul>
+                  <% }) %>
+                  <li
+                    style="
+                      display: flex;
+                      gap: 60px;
+                      margin-bottom: 15px;
+                      border-bottom: 1px solid #ddd;
+                      padding-bottom: 5px;
+                    "
+                    className="d-flex justify-content-between"
+                  >
+                    <span style="min-width: 100px; text-align: justify"
+                      >- Tổng tiền :</span
+                    >
+                    <span
+                      style="font-size: 16px; font-weight: 600"
+                      className="h5"
+                    >
+                      <%= data.tong_tien.toLocaleString("vi-VN", { style:
+                      "currency", currency: "VND", }) %></span
+                    >
                   </li>
                 </ul>
-                <button type="submit" className="btn btn-main btn-small">
+                <a href="/admin/bills" className="btn btn-main btn-small">
                   Quay lại
-                </button>
+                </a>
               </div>
             </div>
           </div>

@@ -93,7 +93,7 @@ class AdminController {
         username,
         email,
         password: hashPassword,
-        role: 'user',
+        role: 'admin',
       });
       return res.redirect('/admin/account');
     } catch (err) {
@@ -228,10 +228,22 @@ class AdminController {
   // delete bills
   deleteBill = async (req, res) => {
     const { id } = req.params;
-    const sql = `DELETE FROM hoa_don WHERE id  = ${id}`;
-    console.log('Checkk SQL:>>>>>', sql);
-    await pool.execute(sql);
-    return res.redirect('/admin/bills');
+    try {
+      // update status
+      await Bill.findByIdAndUpdate(
+        id,
+        {
+          trang_thai: true,
+        },
+        {
+          new: true,
+        }
+      );
+      return res.redirect('/admin/bills');
+    } catch (err) {
+      console.log(err);
+      return res.redirect('/admin/bills');
+    }
   };
 
   // GET products page
