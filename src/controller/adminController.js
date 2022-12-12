@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const Bill = require('../model/Bill');
 const Category = require('../model/Category');
 const Product = require('../model/Product');
 const User = require('../model/User');
@@ -192,17 +193,36 @@ class AdminController {
 
   // Get bills page
   bills = async (req, res) => {
-    const sql = `SELECT * FROM hoa_don`;
-    const [rows] = await pool.execute(sql);
-    const list_idthanhvien = [...rows].map((item) => item.id_thanhvien);
-    list_idthanhvien.join(',');
-    const sqluser = `SELECT * FROM thanhvien WHERE id_thanhvien IN (${list_idthanhvien})`;
-    const [rowsuser] = await pool.execute(sqluser);
-    return res.render('admin/bills.ejs', {
-      data: rows,
-      data2: rowsuser,
-      url: req.url,
-    });
+    try {
+      const data = await Bill.find();
+      return res.render('admin/bills.ejs', {
+        data: data,
+        url: req.url,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.render('admin/bills.ejs', {
+        data: [],
+        url: req.url,
+      });
+    }
+  };
+  // detail bills
+  billsDetail = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const data = await Bill.findById(id);
+      return res.render('admin/billsDetail.ejs', {
+        data: data,
+        url: req.url,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.render('admin/billsDetail.ejs', {
+        data: [],
+        url: req.url,
+      });
+    }
   };
 
   // delete bills

@@ -61,6 +61,11 @@ router.post(
 
 //BILLS
 router.get('/bills', authMiddleware.requireAuth, adminController.bills);
+router.get(
+  '/bills/:id',
+  authMiddleware.requireAuth,
+  adminController.billsDetail
+);
 router.post(
   '/bills/delete/:id',
   authMiddleware.requireAuth,
