@@ -10,14 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hoangnam180/rest_fullTodo.git"
+    "url": "https://github.com/hoangnam180/butcher_backend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hoangnam180/rest_fullTodo/issues"
+    "url": "https://github.com/hoangnam180/butcher_backend/issues"
   },
-  "homepage": "https://github.com/hoangnam180/rest_fullTodo#readme",
   "dependencies": {
     "@babel/core": "7.15.5",
     "@babel/node": "7.15.4",
