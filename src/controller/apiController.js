@@ -81,6 +81,40 @@ class AdminController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   };
+  getBillByPhoneNumber = async (req, res) => {
+    try {
+      const { sdt } = req.query;
+      const bill = await Bill.find({
+        sdt: sdt,
+      });
+      if (!bill) {
+        return res.status(404).json({ message: 'Bill not found' });
+      }
+      return res.json({
+        status: 200,
+        data: bill,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  getBillById = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const bill = await Bill.findById(id);
+      if (!bill) {
+        return res.status(404).json({ message: 'Bill not found' });
+      }
+      return res.json({
+        status: 200,
+        data: bill,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  };
 }
 
 module.exports = new AdminController();
